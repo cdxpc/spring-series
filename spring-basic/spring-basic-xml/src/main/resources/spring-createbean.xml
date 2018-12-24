@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- 1、通调用构造方法的方式 -->
+    <bean name="black" class="spring.basic.xml.createbean.Black">
+        <constructor-arg name="name" value="黑色"/>
+    </bean>
+
+    <!-- 2、通过调用静态工厂方法的方式 -->
+    <bean name="blue" class="spring.basic.xml.createbean.ColorStaticFactory" factory-method="getColor">
+        <constructor-arg value="blue"/>
+        <property name="name" value="蓝色"/>
+    </bean>
+
+    <bean name="green" class="spring.basic.xml.createbean.ColorStaticFactory" factory-method="getColor">
+        <constructor-arg value="green"/>
+        <property name="name" value="绿色"/>
+    </bean>
+
+    <!-- 3、通过调用实例工厂方法的方式 -->
+    <bean name="instanceFactory" class="spring.basic.xml.createbean.ColorInstanceFactory"/>
+
+    <bean name="red" factory-bean="instanceFactory" factory-method="getColor2">
+        <constructor-arg value="red"/>
+        <property name="name" value="红色"/>
+    </bean>
+
+    <bean name="yellow" factory-bean="instanceFactory" factory-method="getColor2">
+        <constructor-arg value="yellow"/>
+        <property name="name" value="黄色"/>
+    </bean>
+
+</beans>
